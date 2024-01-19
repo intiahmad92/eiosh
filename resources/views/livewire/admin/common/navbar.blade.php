@@ -5,15 +5,10 @@
     <!-- * * Tip * * You can use text or an image for your navbar brand.-->
     <!-- * * * * * * When using an image, we recommend the SVG format.-->
     <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-    <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="{{route('admin.dashboard')}}"><img style="height: 3.8rem;" src="{{asset('images/'.$siteSettings->extra_image_1)}}" alt=""></a>
+    <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="{{route('admin.dashboard')}}">{{$siteSettings->extra_field_1}}</a>
     <!-- Navbar Search Input-->
     <!-- * * Note: * * Visible only on and above the lg breakpoint-->
-    <form class="form-inline me-auto d-none d-lg-block me-3">
-        <div class="input-group input-group-joined input-group-solid">
-            <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
-            <div class="input-group-text"><i data-feather="search"></i></div>
-        </div>
-    </form>
+    
     <!-- Navbar Items-->
     <ul class="navbar-nav align-items-center ms-auto">
         

@@ -19713,7 +19713,9 @@ body {
   }
 }
 .nav-fixed .topnav {
+  background-color: #3F51B5 !important;
   z-index: 1039;
+      height: 65px;
 }
 .nav-fixed #layoutSidenav #layoutSidenav_nav {
   width: 15rem;
@@ -20082,10 +20084,16 @@ body {
   color: #fff;
 }
 .topnav.navbar-light #sidebarToggle {
-  color: #212832;
+  color: #fff !important;
+}
+.topnav.navbar-light #sidebarToggle .feather {
+      height: 1.3rem !important;
+    width: 1.3rem !important;
 }
 .topnav.navbar-light .navbar-brand {
-  color: #363d47;
+    color: #ffffff;
+    font-size: 20px;
+    font-variant: petite-caps;
 }
 .topnav .dropdown {
   position: static;
@@ -20245,32 +20253,32 @@ body {
 }
 
 .sidenav-light {
-  background-color: #fff;
-  color: #212832;
+    background-color: #3f51b5;
+    color: #ffff !important;
 }
 .sidenav-light .sidenav-menu .sidenav-menu-heading {
-  color: #a7aeb8;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link {
-  color: #212832;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link .nav-link-icon {
-  color: #a7aeb8;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link .sidenav-collapse-arrow {
-  color: #a7aeb8;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link:hover {
-  color: #0061f2;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link.active {
-  color: #0061f2;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu .nav-link.active .nav-link-icon {
-  color: #0061f2;
+  color: #ffff;
 }
 .sidenav-light .sidenav-menu-nested {
-  border-left-color: #d4dae3;
+  border-left-color: #ffff;
 }
 .sidenav-light .sidenav-footer {
   background-color: rgba(33, 40, 50, 0.05);
@@ -21249,8 +21257,8 @@ pre[class*=language-] {
 
 
 table.dataTable thead th, table.dataTable tfoot th {
-    background-color: #0061f2 !important;
-    background-image: linear-gradient(135deg, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%) !important;
+    background-color: #009688 !important;
+    background-image: linear-gradient(135deg, #009688 0%, rgb(63 81 181) 100%) !important;
     font-weight: bold;
     color: #fff;
 }
@@ -21292,7 +21300,7 @@ label{
 
 .card-header{
     color: #fff !important;
-    background-color: #0061f2;
+    background-color: #33418f;
 }
 .add-button{
   text-align: right;
@@ -21454,6 +21462,23 @@ tr:nth-child(even){background-color: #f2f2f2 !important}
       justify-content: center;
     display: flex;
 }
+
+.sidenav-menu-heading-account{
+      padding: 0.75rem 1rem 0.75rem !important;
+}
+
+.dashnav{list-style: none; padding:0;padding-top: 30px !important}
+.dashnav li a{display: block; padding: 15px; text-align: center; border-radius: 5px; background: #fff; margin-bottom: 30px; color: #333;    border: 1px solid #eee;    text-decoration: none;
+justify-content: center;}
+.dashnav li a svg {display: block; font-size: 36px; margin-bottom:10px;display: block;
+    font-size: 38px;
+    height: 35px;
+    width: 35px;
+    margin-bottom: 14px;
+    /* display: flex; */
+        width: 100%;}
+.dashnav li a:hover{background: #3f51b5; color: #fff; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);}
+
 
 /* Responsive Styles for Small Screens */
 @media (max-width: 768px) {
