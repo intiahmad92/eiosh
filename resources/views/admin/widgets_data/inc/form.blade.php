@@ -34,6 +34,15 @@
 	@endfor
   @endif
 
+   @if($wid->is_description)
+  <div class="col-md-12">
+     <div class="mb-3">
+        {!! Form::label('description', $wid->title.' Description', ['class' => 'font-weight-bold']) !!}
+        {!! Form::textarea('description', null, array('class'=>'form-control editor1', 'id'=>'description', 'placeholder'=>$wid->title.' Description', 'required'=>'required')) !!}
+     </div>
+  </div>
+  @endif
+
   @if($wid->is_extra_image_title_1)
     <div class="col-md-12">
       <div class="mb-3">
@@ -52,14 +61,7 @@
   </div>
   @endif
 
-  @if($wid->is_description)
-  <div class="col-md-12">
-     <div class="mb-3">
-        {!! Form::label('description', $wid->title.' Description', ['class' => 'font-weight-bold']) !!}
-        {!! Form::textarea('description', null, array('class'=>'form-control editor1', 'id'=>'description', 'placeholder'=>$wid->title.' Description', 'required'=>'required')) !!}
-     </div>
-  </div>
-  @endif
+ 
 
 
  @if($wid->radio_buttons)

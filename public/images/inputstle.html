@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled File Input</title>
+  <style>
+    /* Hide the original file input */
+    .form-control input[type="file"] {
+      display: none;
+    }
+
+    /* Style the custom button */
+    .custom-file-input {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Style the custom button on hover */
+    .custom-file-input:hover {
+      background-color: #2980b9;
+    }
+
+    /* Style the file name display */
+    .file-name {
+      margin-top: 8px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Your form with the custom file input -->
+  <form>
+    <div class="form-control">
+      <label for="fileInput" class="custom-file-input">Choose File</label>
+      <input type="file" id="fileInput" style="display: none;" onchange="displayFileName()">
+      <div class="file-name" id="fileNameDisplay"></div>
+    </div>
+  </form>
+
+  <script>
+    // Function to display the selected file name
+    function displayFileName() {
+      const fileInput = document.getElementById('fileInput');
+      const fileNameDisplay = document.getElementById('fileNameDisplay');
+      fileNameDisplay.textContent = fileInput.files[0].name;
+    }
+  </script>
+
+</body>
+</html>

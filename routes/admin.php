@@ -78,6 +78,8 @@ Route::get('/delete-module/{module}', [ModulesController::class,'destroy'])->nam
 
 
 Route::get('/{module}/delete/{id}', [ModulesDataController::class,'destroy'])->name('modules.data.delete');
+Route::get('/delete-file/{id}/{field}', [ModulesDataController::class,'destroyFile'])->name('modules.data.delete.file');
+Route::get('/download-files/{id}/{module}', [ModulesDataController::class,'downloadFiles'])->name('modules.data.download.files');
 Route::get('/data-status/{module}/{status}', [ModulesDataController::class,'update_status']);
 Route::get('/module-data', [ModulesDataController::class,'fetchModulesData'])->name('modules.data.fetch');
 Route::get('/{module}', [ModulesDataController::class,'index'])->name('modules.data');
@@ -85,6 +87,7 @@ Route::get('/{module}/add', [ModulesDataController::class,'add'])->name('modules
 Route::post('/{module}/store', [ModulesDataController::class,'store'])->name('modules.data.store');
 Route::post('/{module}/update', [ModulesDataController::class,'update'])->name('modules.data.update');
 Route::get('/{module}/edit/{id}', [ModulesDataController::class,'edit'])->name('modules.data.edit');
+Route::get('/{module}/preview/{id}', [ModulesDataController::class,'preview'])->name('modules.data.preview');
 
 
 

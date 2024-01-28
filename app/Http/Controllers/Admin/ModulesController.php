@@ -190,6 +190,7 @@ class ModulesController extends Controller
         $module->is_description = $request->is_description;
         $module->is_highlights = $request->is_highlights;
         $module->is_seo = $request->is_seo;
+        $module->is_preview = $request->is_preview;
         $module->category = $request->category;
         $module->multiple_category = $request->multiple_category;
         $module->sub_category = $request->sub_category;

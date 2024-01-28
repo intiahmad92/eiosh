@@ -27,8 +27,7 @@ Route::post('ajax_remove_file',[FilerController::class, 'fileDestroy'])->name('f
 Route::get('blog',[BlogsController::class, 'index'])->name('blogs.list');
 Route::get('blog/{slug}',[BlogsController::class, 'detail'])->name('blogs.detail');
 
-Route::get('courses',[CourseController::class, 'index'])->name('Courses.list');
-Route::get('course/{slug}',[CourseController::class, 'detail'])->name('Courses.detail');
+
 
 Route::get('services/{service}',[ServicesController::class, 'index'])->name('services.list');
 Route::get('service/{slug}',[ServicesController::class, 'detail'])->name('services.detail');
@@ -62,3 +61,5 @@ Route::get('/{slug}', function ($slug) {
     $cms = App\Models\ModulesData::where('slug',$slug)->first();
     return view('cms',compact('cms'));
 });
+Route::get('{slug}',[CourseController::class, 'index'])->name('courses.list');
+Route::get('/a/{slug}/{pslug}',[CourseController::class, 'detail'])->name('courses.detail');

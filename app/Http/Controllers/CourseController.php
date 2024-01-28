@@ -8,15 +8,22 @@ use App\Models\Tags;
 
 class CourseController extends Controller
 {
-    public function index(Request $request){
-        $data = ModulesData::where('module_id', 19)->where('status','active');
+    public function index(Request $request,$slug){
+        $category = ModulesData::where('slug',$slug)->first();
+        $arr['category'] = $category; 
+        if($slug=='all'){
+            $data = ModulesData::where('module_id', 1)->where('status','active');
+        }else{
+           $data = ModulesData::where('module_id', 1)->where('status','active')->where('extra_field_1', $category->id); 
+        }
+        
 
         if ($request->has('keyword')) {
             $data->where('title', 'like', '%'.$request->keyword.'%');
         }
 
         if ($request->has('category')) {
-            $data->where('category', $request->category);
+            $data->where('extra_field_1', $request->category);
         }
 
         if ($request->has('archive')) {
@@ -33,25 +40,25 @@ class CourseController extends Controller
 
         $arr['courses'] = $data->paginate(10);
 
-        $arr['recent_data'] = ModulesData::where('module_id', 10)->where('status','active')->orderBy('id','desc')->take(3)->get(); 
         $arr['archives'] = $this->lastThreeMonths();
         return view('courses.index')->with($arr);
     }   
 
-    public function detail($slug){
-    	$data['blog'] = ModulesData::where('slug',trim($slug))
-    	 		->where('module_id', 10)
+    public function detail($slu,$slug){
+    	$data['course'] = ModulesData::where('slug',trim($slug))
+    	 		->where('module_id', 1)
     	 		->where('status','active')
     	 		->first();
 
-    	$data['recent_data'] = ModulesData::where('module_id', 10)->where('id','!=',$data['blog']->id)->where('status','active')->orderBy('id','desc')->take(3)->get(); 
-    	$tag_ids = explode(',', $data['blog']->tag_ids);
+    	$data['recent_data'] = ModulesData::where('module_id', 1)->where('id','!=',$data['course']->id)->where('status','active')->orderBy('id','desc')->take(3)->get(); 
+        $data['category'] = ModulesData::where('slug', $slu)->where('status','active')->orderBy('id','desc')->first(); 
+    	$tag_ids = explode(',', $data['course']->tag_ids);
 
     	$data['tags'] = null;	
     	
 		$data['archives'] = $this->lastThreeMonths();
     	 
-    	return view('blogs.detail')->with($data); 		
+    	return view('courses.detail')->with($data); 		
     }
 
     function lastThreeMonths() {

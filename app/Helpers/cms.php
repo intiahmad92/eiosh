@@ -15,27 +15,22 @@ if (! function_exists('adminMenus')) {
     /**
      * Assign high numeric IDs to a config item to force appending.
      *
-     * @param  array  $array
      * @return array
      */
     function adminMenus()
     {       
-            $menus = array(
-                'Custom'=>array(
-                    'CMS Pages' => array('icon'=>'grid','CMS Pages List'=>url('admin/cms-pages'),'Create Page'=>url('admin/cms-pages/add')),
-                    'Slider' => array('icon'=>'sliders','Slider List'=>url('admin/slider'),'Create Slider'=>url('admin/slider/add')),
-                    'Posts' => array('icon'=>'menu','Posts List'=>url('admin/blogs'),'Create Post'=>url('admin/blogs/add'),'Post Categories List'=>url('admin/blog-categories')),
-                    'Best Services' => array('icon'=>'globe','Services List'=>url('admin/best-services'),'Create Service'=>url('admin/best-services/add'),'Services Content'=>url('admin/services-content'),'Service Categories'=>url('admin/service-categories')),
-                    'Case Studies' => array('icon'=>'grid','Case Studies'=>url('admin/case-studies'),'Create Case Studies'=>url('admin/case-studies/add')),
-                ),
-                'Access'=>array(
-                    'Company Logos' => array('icon'=>'image','Company Logos List'=>url('admin/company-logos'),'Create Company Logo'=>url('admin/company-logos/add')),
-                    'Testimonials' => array('icon'=>'activity','Testimonials List'=>url('admin/testimonials'),'Create Testimonial'=>url('admin/testimonials/add')),
-                    'Site Tags' => array('icon'=>'crosshair','Site Tags List'=>url('admin/assset-tags'),'Create Site Tag'=>url('admin/assset-tags/add')),
-                    
-                ),
-            );
-            return $menus;  
+        $modules = App\Models\Modules::get();
+        $array = array();
+        if (null !== $modules) {
+            foreach ($modules as $key => $val) {
+                $array[$val->name] = array('icon' => 'grid', $val->name => url('admin/' . $val->slug), 'Create ' . $val->term => url('admin/' . $val->slug . '/add'));
+            }
+        }
+        $menus = array(
+            'Custom' => $array,);
+
+        //dd($menus);
+        return $menus;  
     }
 }
 
@@ -141,6 +136,48 @@ if (! function_exists('url_title')) {
         return trim(trim($str, $separator));
     }
 } 
+
+function generateFileViews($filePath)
+{
+    $html = '';
+        $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+        $fileName = basename($filePath);
+
+        switch ($fileExtension) {
+            case 'pdf':
+                // Display PDF in an iframe
+                $html .= '<iframe src="' . $filePath . '" width="100%" height="600px"></iframe>';
+                break;
+
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                // Display image using img tag
+                $html .= '<img src="' . $filePath . '" alt="' . $fileName . '" style="max-width: 100%;">';
+                break;
+
+            case 'doc':
+            case 'docx':
+                // Display file name and provide download button
+                $html .= '<p>' . $fileName . '</p>';
+                $html .= '<a href="' . $filePath . '" download>Download</a>';
+                break;
+
+            // Add more cases for other file types as needed
+
+            default:
+                // For unsupported types, display a simple link for download
+                $html .= '<p>' . $fileName . '</p>';
+                $html .= '<a href="' . $filePath . '" download>Download</a>';
+                break;
+        }
+
+        $html .= '<hr>'; // Add a horizontal line between files for clarity
+
+    return $html;
+}
+
 
 if (! function_exists('title')) {
     /**

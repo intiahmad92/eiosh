@@ -10,6 +10,8 @@ use App\Models\ModulesData;
 use App\Models\Tags;
 use App\Models\Menu;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Response;
+use ZipArchive;
 use DataTables;
 
 class ModulesDataController extends Controller
@@ -65,6 +67,17 @@ class ModulesDataController extends Controller
         $data['tags'] = dropdown(3);
 
         return view('admin.modules_data.edit')->with($data);
+    }
+
+    public function preview($slug, $id)
+    {
+        $data = [
+            'module' => Modules::where('slug', $slug)->firstOrFail(),
+            'menu_types' => Menu_types::where('status', 'active')->pluck('title', 'id')->toArray(),
+            'module_data' => ModulesData::findOrFail($id),
+        ];
+
+        return view('admin.modules_data.preview')->with($data);
     }
 
     public function store(Request $request)
@@ -140,13 +153,18 @@ class ModulesDataController extends Controller
     {
         for ($i = 1; $i <= 25; $i++) {
             $extra_field = 'extra_field_' . $i;
-            $data->$extra_field = $request->$extra_field;
+            
 
             // Check if the field is a file and has been uploaded
             if ($request->hasFile($extra_field) && $request->file($extra_field)->isValid()) {
                 $file = $request->file($extra_field);
                 $data->$extra_field = $file->getClientOriginalName();
                 $file->move(public_path('images'), $file->getClientOriginalName());
+            }else{
+                if(!empty($request->$extra_field)){
+                    $data->$extra_field = $request->$extra_field;
+                }
+                
             }
         }
     }
@@ -277,7 +295,7 @@ class ModulesDataController extends Controller
     private function getActionButtons($module, $modulesData)
     {
         $preview = ($module->is_preview)
-            ? '<a target="_blank" href="' . url('/admin/' . strtolower($module->term) . '/' . $modulesData->slug) . '" class="btn btn-success"><i class="icofont icofont-eye-alt"></i>&nbsp;Preview</a>'
+            ? '<a target="_blank" href="' . route('admin.modules.data.download.files',[$modulesData->id,$module->id]) . '"><i class="icofont icofont-eye-alt"></i>&nbsp;<i class="fa-solid fa-download"></i></a>&nbsp&nbsp&nbsp<a target="_blank" href="' . route('admin.modules.data.preview', [$module->slug, $modulesData->id]) . '"><i class="icofont icofont-eye-alt"></i>&nbsp;<i class="fa-solid fa-eye"></i></a>&nbsp&nbsp&nbsp<a target="_blank" href="' . url('/admin/' . strtolower($module->term) . '/' . $modulesData->slug) . '"><i class="icofont icofont-eye-alt"></i>&nbsp;<i class="fa-solid fa-share"></i></a>&nbsp&nbsp&nbsp'
             : '';
 
         $edit = '<a class="" href="' . route('admin.modules.data.edit', [$module->slug, $modulesData->id]) . '"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp&nbsp&nbsp';
@@ -322,6 +340,18 @@ class ModulesDataController extends Controller
         return redirect()->back();
     }
 
+    public function destroyFile(Request $request, $id, $field)
+    {
+        $data = ModulesData::findOrFail($id);
+        $data->$field = null;
+        $data->update();
+
+        $request->session()->flash('message.added', 'success');
+        $request->session()->flash('message.content', 'Successfully Deleted!');
+
+        return redirect()->back();
+    }
+
     public function update_status($id, $current_status)
     {
         if (empty($id) || empty($current_status)) {
@@ -336,6 +366,69 @@ class ModulesDataController extends Controller
 
         echo $new_status;
     }
+
+    public function downloadFiles($id, $moduleId)
+    {
+        $module = Modules::findOrFail($moduleId);
+        $fileFields = [];
+
+        for ($i = 1; $i <= 25; $i++) {
+            $fieldName = "extra_field_type_$i";
+            $fieldType = $module->$fieldName;
+
+            if ($fieldType === 'file') {
+                $fieldTitle = "extra_field_$i";
+                $fileFields[] = $fieldTitle;
+            }
+        }
+
+        $module_data = ModulesData::findOrFail($id);
+
+        // Create a unique zip file name
+        $zipFileName = 'files_' . time() . '.zip';
+
+        // Use a temporary directory to create the ZIP file
+        $tempZipFilePath = storage_path("temp/" . $zipFileName);
+
+        // Create a new ZipArchive instance
+        $zip = new ZipArchive;
+
+        $filesPath = array();
+
+        // Open the zip file for creating
+        if ($zip->open($tempZipFilePath, ZipArchive::CREATE) === TRUE) {
+            foreach ($fileFields as $key => $fileField) {
+
+                $filePath = public_path("images/" . $module_data->$fileField);
+                //dd($filePath);
+                if (file_exists($filePath) && !empty($module_data->$fileField)) {
+                    $zip->addFile($filePath, basename($module_data->$fileField));
+                    $filesPath[] = $filePath;
+
+                }
+            }
+           // dd($zip);
+            // Close the zip file
+            sleep(1);
+            
+            $zip->close();
+        }
+
+        // Move the ZIP file to the intended location
+        $finalZipFilePath = public_path("images/" . $zipFileName);
+        rename($tempZipFilePath, $finalZipFilePath);
+
+        // Set the appropriate content type
+        $headers = [
+            'Content-Type' => 'application/zip',
+            'Content-Disposition' => 'attachment; filename="' . $zipFileName . '"',
+        ];
+
+        // Return the response with the zip file content
+        return response()->download($finalZipFilePath, null, $headers);
+    }
+
+
 
 
 }

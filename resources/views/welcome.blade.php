@@ -1,526 +1,212 @@
 <x-app-layout>
-<div class="th-hero-wrapper hero-3" id="hero">
-    @if(null!==($slider = module(2)))
-    <div class="hero-slider-2 th-carousel" data-fade="true" data-slide-show="1" data-md-slide-show="1" data-arrows="true">
-        @foreach($slider as $slide)
-        <div class="th-hero-slide">
-            <div class="th-hero-bg" data-bg-src="{{asset('images/'.$slide->image)}}"></div>
-            <div class="th-hero-bg-overlay" data-bg-src="assets/img/hero/hero_overlay_3_1.jpg"></div>
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="hero-style3 text-center">
-                            <span class="hero-subtitle text-white" data-ani="slideinup" data-ani-delay="0.1s">{{$slide->extra_field_1}}</span>
-                            <h1 class="hero-title text-white" data-ani="slideinup" data-ani-delay="0.4s">{{$slide->title}}</h1>
-                            <div class="hero-text text-white" data-ani="slideinup" data-ani-delay="0.5s">
-                                <p>{!!$slide->description!!}</p>
-                                <ul class="counter-list cta-countdown" data-offer-date="10/24/2023">
-                                    <li>
-                                        <div class="day count-number">{{$slide->extra_field_2}}</div>
-                                        <span class="count-name">Days</span>
-                                    </li>
-                                    <li>
-                                        <div class="minute count-number">{{$slide->extra_field_3}}</div>
-                                        <span class="count-name">Mins</span>
-                                    </li>
-                                    <li>
-                                        <div class="seconds count-number">{{$slide->extra_field_4}}</div>
-                                        <span class="count-name">Secs</span>
-                                    </li>
-                                </ul>
+<div id="page" class="Page_page__jLKW_">
+    <div class="Page_pageContent__9e_Vu">
+        <div class="Home_home__WmrzH">
+            @if(null!==($slider = module(6,1)))
+            @foreach($slider as $slide)
+            <div class="Slider_wrapper__cK0mf">
+                <div class="Slider_placeholder__dQ2__"></div>
+                <div class="Slider_sliderImage__d__k3 Slider_hidden__btgOf"></div>
+                <div class="Slider_sliderImage__d__k3 Slider_hidden__btgOf"></div>
+                
+                <div class="Slider_paddleRight__HTt5W">
+                    <img src="{{asset('images/'.$slide->image)}}" alt="">
+                </div>
+                
+                <img src="{{url('/')}}/images/{{$siteSettings->extra_image_1}}" class="Slider_logo__S5bPf" />
+                <h1>{{$slide->title}}</h1>
+                <p>{{$slide->extra_field_1}}</p>
+            </div>
+            @endforeach
+            @endif
+            <div class="Home_sectionWrapper__oxo9r">
+                <div class="Home_assetTypeBanner__pIrzU">
+                    @if(null!==($categories = module(4)))
+                    @foreach($categories as $category)
+                    <div class="Home_subSection__aX9hu undefined">
+                        <a href="{{route('courses.list',$category->slug)}}">
+                            <div class="Home_assetTypeImage__wiCha">
+                                <img src="{{asset('images/'.$category->extra_field_2)}}" /><img src="{{asset('images/'.$category->extra_field_3)}}" class="Home_hover__pPUWu" />
                             </div>
-                            <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.7s">
-                                <a href="contact.html" class="th-btn style3">Admission Now<i class="fa-regular fa-arrow-right ms-2"></i></a>
-                            </div>
+                        </a>
+                        <div class="Home_text__ihJ9G">
+                            <h2>{{$category->title}}</h2>
+                            <p>{{$category->extra_field_1}}</p>
+                            <a class="Button_button__GeQ2O Button_blue__bLQC5" href="{{route('courses.list',$category->slug)}}"><div class="Button_inner__63ypl">Browse {{$category->title}}</div></a>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                    
+                    
+                </div>
+            </div>
+            <?php $widget = widget(4); ?>
+            <div class="Home_sectionWrapper__oxo9r Home_windowBannerRend__HNzjD" style="background: url({{asset('images/'.$widget->extra_image_1)}}) no-repeat 50%!important;background-attachment: fixed!important;
+    background-size: cover!important;">
+                <div class="Home_gradientLeft__dRRR8"></div>
+                <div class="Home_section__BntL9">
+                    <div class="Home_subSection__aX9hu">
+                        <div class="Home_text__ihJ9G">
+                            <h2>{{$widget->extra_field_1}}</h2>
+                            <p>{!!$widget->description!!}</p>
+                        </div>
+                    </div>
+                    <div class="Home_subSection__aX9hu Home_hideMobileHalf__Djfri"></div>
+                </div>
+            </div>
+            <?php $widget = widget(5); ?>
+            <div class="Home_sectionWrapper__oxo9r Home_windowBannerClay__n42gE" style="background: url({{asset('images/'.$widget->extra_image_1)}}) no-repeat 50%!important;background-attachment: fixed!important;
+    background-size: cover!important;">
+                <div class="Home_gradientRight__hod6m"></div>
+                <div class="Home_section__BntL9">
+                    <div class="Home_subSection__aX9hu Home_hideMobileHalf__Djfri"></div>
+                    <div class="Home_subSection__aX9hu">
+                        <div class="Home_text__ihJ9G">
+                            <h2>{{$widget->extra_field_1}}</h2>
+                            <p>{!!$widget->description!!}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @endforeach
-    </div>
-    @endif
-    <div class="hero-shape shape1 movingX d-md-block d-none"><img src="assets/img/hero/shape_3_1.png" alt="shape" /></div>
-    <div class="hero-shape shape2 d-sm-block d-none"><img class="spin" src="assets/img/hero/shape_3_2.png" alt="shape" /></div>
-    <div class="hero-shape shape3 spin d-sm-block d-none"><img src="assets/img/hero/shape_2_4.png" alt="shape" /></div>
-</div>
-<div class="bg-smoke client-area-3">
-<div class="container">
-    @if(null!==($logos = module(4)))
-    <div class="row th-carousel" data-slide-show="8" data-md-slide-show="6">
-        @foreach($logos as $logo)
-        <div class="col-lg-12">
-            <a href="blog.html" class="client-thumb"><img src="{{asset('images/'.$logo->image)}}" alt="img" /></a>
-        </div>
-        @endforeach
-    </div>
-    @endif
-</div>
-</div>
-@if(null!==($services = module(3)))
-<section class="service-sec space">
-<div class="container">
-    <div class="title-area text-center">
-        <span class="sub-title"><i class="fal fa-book me-2"></i> OUR SERVICES</span>
-        <h2 class="sec-title">Our Creative Education Services</h2>
-    </div>
-    <div class="row th-carousel service-slider1 slider-shadow" data-slide-show="4" data-ml-slide-show="3" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="1">
-    @foreach($services as $service)
-        <div class="col-md-6 col-xl-4">
-            <div class="service-card">
-                <div class="service-card-icon"><img class="svg-img" src="{{asset('images/'.$service->extra_field_1)}}" alt="icon" /></div>
-                <div class="service-card-content">
-                    <h3 class="box-title"><a href="service-details.html">{{$service->title}}</a></h3>
-                    <p class="service-card-text">{!!$service->description!!}</p>
-                    <div class="service-card-img">
-                        <img src="{{asset('images/'.$service->image)}}" /> <a href="service-details.html" class="icon-btn"><i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-    </div>
-</div>
-</section>
-@endif
-<div class="overflow-hidden" data-bg-src="assets/img/bg/about-3-bg.png" id="about-sec">
-<div class="container">
-    <div class="row align-items-center">
-        <div class="col-xl-6">
-            <div class="img-box3"><img class="img-1 tilt-active" src="assets/img/normal/about_3_1.png" alt="About" /></div>
-        </div>
-        <div class="col-xl-6">
-            <div class="space">
-                <div class="title-area mb-35">
-                    <span class="sub-title"><i class="fal fa-book me-1"></i> More About Our Company</span>
-                    <h2 class="sec-title">Learn About Edura Education</h2>
-                </div>
-                <p class="mt-n2 mb-30">
-                    Synergistically visualize alternative content before cross functional core Rapidiously administra standardized value via focused benefits. Rapidiously redefine highly efficient niche markets with
-                    plug-and-play materials professionally seize client centric solutions
-                </p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="about-grid2">
-                            <img src="assets/img/icon/about-grid-icon1.svg" alt="img" />
-                            <h3 class="about-grid_title h5">Competitive Rates</h3>
+            <?php $widget = widget(6); ?>
+            <div class="Home_sectionWrapper__oxo9r">
+                <div class="Home_section__BntL9 Home_sectionHalfMobile___659O">
+                    <div class="Home_subSection__aX9hu">
+                        <div>
+                            <h2>
+                                {{$widget->extra_field_1}}
+                                
+                            </h2>
+                            <p>{!!$widget->description!!}</p>
                         </div>
-                        <p class="mt-3">Join us on our journey as we continue to innovate & shape the future of education.</p>
                     </div>
-                    <div class="col-md-6">
-                        <div class="about-grid2">
-                            <img src="assets/img/icon/about-grid-icon2.svg" alt="img" />
-                            <h3 class="about-grid_title h5">Online Certificates</h3>
+                    <div class="Home_subSection__aX9hu">
+                        <a class="Button_button__GeQ2O Button_accent__N9N_t" href="https://www.patreon.com/polyhaven/overview"><div class="Button_inner__63ypl">🚀 Become a Patron</div></a>
+                        <a class="Button_button__GeQ2O Button_hollow__DlAZt" href="#"><div class="Button_inner__63ypl">Finance Reports</div></a>
+                    </div>
+                </div>
+            </div>
+            <?php $widget = widget(7); ?>
+            <div class="Home_sectionWrapper__oxo9r Home_sectionBrowse__WPQyx" style="background: url({{asset('images/'.$widget->extra_image_1)}}) no-repeat 50%!important;background-attachment: fixed!important;
+    background-size: cover!important;">
+                <div class="Home_btnBrowse__r7Shw Home_btnBrowseAll__DROmn">
+                    <a class="Button_button__GeQ2O Button_accent__N9N_t" href="{{route('courses.list','all')}}"><div class="Button_inner__63ypl">Browse All Assets</div></a>
+                </div>
+                <div class="Home_btnBrowse__r7Shw Home_btnBrowseHDRIs__Tg6P4">
+                    <a class="Button_button__GeQ2O Button_blue__bLQC5" href="{{route('courses.list','hdris')}}"><div class="Button_inner__63ypl">Browse HDRIs</div></a>
+                </div>
+                <div class="Home_btnBrowse__r7Shw Home_btnBrowseTextures__66gZo">
+                    <a class="Button_button__GeQ2O Button_orange__zNWiI" href="{{route('courses.list','textures')}}"><div class="Button_inner__63ypl">Browse Textures</div></a>
+                </div>
+                <div class="Home_btnBrowse__r7Shw Home_btnBrowseModels__YctDL">
+                    <a class="Button_button__GeQ2O Button_green__Ci_jE" href="{{route('courses.list','models')}}"><div class="Button_inner__63ypl">Browse Models</div></a>
+                </div>
+                <div class="Home_hoverBrowseAll__L8AEE"></div>
+                <div class="Home_hoverBrowseHDRIs__uO9Oo"></div>
+                <div class="Home_hoverBrowseTextures__bQf_k"></div>
+                <div class="Home_hoverBrowseModels__hDpla"></div>
+            </div>
+            <div class="Home_sectionWrapper__oxo9r">
+                <div class="Home_section__BntL9 Home_testimonials__U1s2d">
+                    @if(null!==($testimonials = module(7)))
+                    @foreach($testimonials as $testimonial)
+                    <div class="Home_testimonial__S0Sj_">
+                        <img src="{{asset('images/'.$testimonial->image)}}" />
+                        <p>
+                            {!!$testimonial->description!!}<br />
+                            <strong>-{{$testimonial->title}}, {{$testimonial->extra_field_1}}</strong>
+                        </p>
+                    </div>
+                    @endforeach
+                    @endif
+                    
+                </div>
+            </div>
+            <?php $widget = widget(8); ?>
+            <div class="Home_sectionWrapper__oxo9r">
+                <div class="Home_section__BntL9">
+                    <div class="Home_subSection__aX9hu">
+                        <div class="Home_text__ihJ9G">
+                            <h2 style="text-align: center;">{{$widget->extra_field_1}}</h2>
+                            <p>{!!$widget->description!!}</p>
                         </div>
-                        <p class="mt-3">We believe that education is fundamental right and a catalyst for personal growth.</p>
+                    </div>
+                    <div class="Home_subSection__aX9hu Home_hideMobileStaff__4RBAw">
+                        <div class="Home_staff__Y_qIR">
+                            <div class="Home_avatarRow__NTP83"><img src="{{asset('images/'.$widget->extra_image_1)}}" alt=""></div>
+                        </div>
                     </div>
                 </div>
-                <div class="btn-group mt-15">
-                    <a href="about.html" class="th-btn">LEARN MORE<i class="fa-regular fa-arrow-right ms-2"></i></a> <a href="about.html" class="th-btn style7">CONTACT US<i class="fa-regular fa-arrow-right ms-2"></i></a>
+            </div>
+            <?php $widget = widget(9); ?>
+            <div class="Home_sectionWrapper__oxo9r">
+                <div class="Home_section__BntL9">
+                    <div class="Home_subSection__aX9hu">
+                        <h2>{{$widget->extra_field_1}}</h2>
+                        {!!$widget->description!!}
+                    </div>
+                    <div class="Home_subSection__aX9hu">
+                        <div class="SocialIcons_communityIcons__2sqxp">
+                            <a href="{{$widget->extra_field_2}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"
+                                    ></path>
+                                </svg>
+                            </a>
+                           
+                            <a rel="me" href="{{$widget->extra_field_3}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="{{$widget->extra_field_5}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="{{$widget->extra_field_6}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="{{$widget->extra_field_7}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="{{$widget->extra_field_4}}">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <title></title>
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-@if(null!==$courses = module(7))
-<div class="space">
-    <div class="container">
-    <div class="row justify-content-between align-items-center">
-        <div class="col-lg-8">
-            <div class="title-area text-lg-start text-center">
-                <span class="sub-title"><i class="fal fa-book me-2"></i> Our Course Categories</span>
-                <h2 class="sec-title">Top Most Unique Category</h2>
-            </div>
-        </div>
-        <div class="col-lg-auto mb-40 text-center">
-            <a href="course.html" class="th-btn">View All Category<i class="fa-regular fa-arrow-right ms-2"></i></a>
         </div>
     </div>
     
-    <div class="row gy-4">
-    @foreach($courses as $course)
-        <div class="col-lg-4 col-xl-3 col-md-6">
-            <div class="category-list">
-                <div class="category-list_icon"><img src="{{asset('images/'.$course->image)}}" alt="icon" /></div>
-                <div class="category-list_content">
-                    <h3 class="category-list_title"><a href="course.html">{{$course->title}}</a></h3>
-                    <span class="category-list_text">{{$course->extra_field_1}} Courses</span> <a href="course.html" class="icon-btn"><i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
 </div>
-</div>
-@endif
-<section class="position-relative overflow-hidden space">
-<div class="cta-bg-img" data-bg-src="assets/img/bg/cta-bg2.png"></div>
-<div class="cta-bg-img2" data-bg-src="assets/img/bg/cta-bg2-shape.png"></div>
-<div class="shape-mockup cta-shape1 jump d-md-block d-none" data-left="-2%" data-bottom="-7%"><img src="assets/img/normal/cta_2_shape1.png" alt="img" /></div>
-<div class="shape-mockup cta-shape2 jump-reverse d-md-block d-none" data-right="-1%" data-top="-3%"><img src="assets/img/normal/cta_2_shape2.png" alt="img" /></div>
-<div class="shape-mockup cta-shape3 spin d-md-block d-none" data-right="20%" data-top="30%"><img src="assets/img/normal/cta_2_shape3.png" alt="img" /></div>
-<div class="container text-center">
-    <div class="cta-wrap2">
-        <div class="title-area text-center mb-35">
-            <span class="sub-title"><i class="fal fa-book me-2"></i>Are You Ready For This Offer</span>
-            <h2 class="sec-title text-white">
-                40% Offer First <span class="text-theme2">100 Student’s</span> For Featured<br />
-                <span class="fw-normal">Topics by Education Category</span>
-            </h2>
-            <p class="cta-text">Get unlimited access to 6,000+ of Udemy’s top courses for your team. Learn and improve skills across business, tec, design, and more.</p>
-        </div>
-        <div class="btn-group justify-content-center">
-            <a href="about.html" class="th-btn style3">Join With Us<i class="fas fa-arrow-right ms-2"></i></a> <a href="contact.html" class="th-btn style2">Become A Teacher<i class="fas fa-arrow-right ms-2"></i></a>
-        </div>
-    </div>
-</div>
-</section>
-@if(null!==$courses = module(19))
-<section class="space" id="course-sec">
-<div class="container">
-    <div class="row justify-content-between align-items-center">
-        <div class="col-lg-6">
-            <div class="title-area mb-xl-5">
-                <span class="sub-title"><i class="fal fa-book me-2"></i> Popular Courses</span>
-                <h2 class="sec-title">Our Popular Online Courses</h2>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="course-tab-2 tab-menu1 filter-menu-active">
-                <button data-filter="*" class="filter-btn active">All Categories</button> <button data-filter=".cat1" class="filter-btn">Business</button> <button data-filter=".cat2" class="filter-btn">Development</button>
-                <button data-filter=".cat3" class="filter-btn">Marketing</button> <button data-filter=".cat4" class="filter-btn">Finance</button>
-            </div>
-        </div>
-    </div>
-    <div class="row gy-4 filter-active mb-60">
-        @foreach($courses as $course)
-        <div class="col-md-6 col-xxl-3 col-lg-4 filter-item cat4">
-            <div class="course-box style2">
-                <div class="course-img">
-                    <img src="{{asset('images/'.$course->image)}}" alt="img" /> <span class="tag"><i class="fas fa-clock"></i> {{$course->textra_field_1}} WEEKS</span>
-                </div>
-                <div class="course-content">
-                    <div class="course-rating">
-                        <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5">
-                            <span style="width: 79%;">Rated <strong class="rating">4.00</strong> out of 5</span>
-                        </div>
-                        (4.7)
-                    </div>
-                    <h3 class="course-title"><a href="course-details.html">{{$course->title}}</a></h3>
-                    <div class="course-meta">
-                        <span><i class="fal fa-file"></i>Lesson {{$course->textra_field_2}}</span> <span><i class="fal fa-user"></i>Students {{$course->textra_field_3}}</span> <span><i class="fal fa-chart-simple"></i>{{$course->extra_field_6}}</span>
-                    </div>
-                    <div class="course-author">
-                        <div class="author-info"><img src="{{asset('images/'.$course->extra_field_5)}}" alt="author" /> <a href="course.html" class="author-name">{{$course->extra_field_4}}</a></div>
-                        <div class="offer-tag">Free</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    <div class="text-center">
-        <a href="course.html" class="th-btn">View All Courses<i class="fa-solid fa-arrow-right ms-2"></i></a>
-    </div>
-</div>
-</section>
-@endif
-<div class="why-sec-v2 overflow-hidden space" data-bg-src="assets/img/bg/why-bg-2.png">
-<div class="shape-mockup why2-shape-1 spin" data-top="40%" data-right="6%"><img src="assets/img/normal/wcu_2_shape1.png" alt="img" /></div>
-<div class="shape-mockup why2-shape-2 jump" data-bottom="25%" data-left="3%"><img src="assets/img/normal/blog-3-bg-shape.png" alt="img" /></div>
-<div class="container">
-    <div class="row align-items-center">
-        <div class="col-xl-6 align-self-end order-xl-2">
-            <div class="wcu-img-2 mb-50 mb-xl-0"><img src="assets/img/normal/wcu_2_1.png" alt="img" /></div>
-        </div>
-        <div class="col-xl-6 order-xl-1">
-            <div class="wcu-wrap2">
-                <div class="title-area mb-xl-5">
-                    <span class="sub-title"><i class="fal fa-book me-1"></i> WHY CHOOSE US</span>
-                    <h2 class="sec-title">Transform Education Your Life, Change the World</h2>
-                </div>
-                <div class="row g-4">
-                    <div class="col-sm-6">
-                        <div class="wcu-box style2">
-                            <div class="wcu-box_icon"><img src="assets/img/icon/wcu-icon-2-1.svg" alt="img" /></div>
-                            <div class="wcu-box_details">
-                                <h3 class="h5 wcu-box_title"><a href="service-details.html">Expert Instruction</a></h3>
-                                <p class="wcu-box_text">We offer a wide range of educational products and services.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="wcu-box style2">
-                            <div class="wcu-box_icon"><img src="assets/img/icon/wcu-icon-2-2.svg" alt="img" /></div>
-                            <div class="wcu-box_details">
-                                <h3 class="h5 wcu-box_title"><a href="service-details.html">Find Video Courses</a></h3>
-                                <p class="wcu-box_text">Online education offers a wide range of courses & programs, covering.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="wcu-box style2">
-                            <div class="wcu-box_icon"><img src="assets/img/icon/wcu-icon-2-3.svg" alt="img" /></div>
-                            <div class="wcu-box_details">
-                                <h3 class="h5 wcu-box_title"><a href="service-details.html">Online Courses</a></h3>
-                                <p class="wcu-box_text">Innovative market without extensive coordinate stand alone catalysts for.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="wcu-box style2">
-                            <div class="wcu-box_icon"><img src="assets/img/icon/wcu-icon-2-4.svg" alt="img" /></div>
-                            <div class="wcu-box_details">
-                                <h3 class="h5 wcu-box_title"><a href="service-details.html">Learn Anywhere</a></h3>
-                                <p class="wcu-box_text">Online education often allows learners to study at their own pace.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="counter-area-2" data-bg-src="assets/img/bg/counter-bg_1.png">
-<div class="container">
-    <div class="row justify-content-between">
-        <div class="col-sm-6 col-xl-3 counter-card-wrap">
-            <div class="counter-card">
-                <h2 class="counter-card_number"><span class="counter-number">3.9</span>k<span class="fw-normal">+</span></h2>
-                <p class="counter-card_text"><strong>Successfully</strong> Trained</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3 counter-card-wrap">
-            <div class="counter-card">
-                <h2 class="counter-card_number"><span class="counter-number">15.8</span>k<span class="fw-normal">+</span></h2>
-                <p class="counter-card_text"><strong>Classes</strong> Completed</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3 counter-card-wrap">
-            <div class="counter-card">
-                <h2 class="counter-card_number"><span class="counter-number">97.5</span>k<span class="fw-normal">+</span></h2>
-                <p class="counter-card_text"><strong>Satisfaction</strong> Rate</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3 counter-card-wrap">
-            <div class="counter-card">
-                <h2 class="counter-card_number"><span class="counter-number">100.2</span>k<span class="fw-normal">+</span></h2>
-                <p class="counter-card_text"><strong>Students</strong> Community</p>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<section class="space overflow-hidden">
-<div class="process-bg-shape1 spin shape-mockup d-xl-block d-none" data-left="7%" data-top="15%"><img src="assets/img/process/process-bg-shape-1-1.png" alt="img" /></div>
-<div class="process-bg-shape2 jump shape-mockup" data-right="-1%" data-bottom="15%"><img src="assets/img/process/process-bg-shape-1-2.png" alt="img" /></div>
-<div class="container">
-    <div class="title-area text-center">
-        <span class="sub-title"><i class="fal fa-book me-1"></i> WHAT WE OFFER</span>
-        <h2 class="sec-title">How Does Edura Work Process?</h2>
-    </div>
-    <div class="process-card-area">
-        <div class="row gy-50 justify-content-center">
-            <div class="col-md-6 col-lg-4 process-card-wrap">
-                <div class="process-card">
-                    <div class="process-card_img"><img src="assets/img/process/process-1-1.png" alt="img" /></div>
-                    <div class="process-card_icon"><img src="assets/img/icon/process-icon-1-1.svg" alt="icon" /></div>
-                    <h2 class="box-title">Choose Any Courses</h2>
-                    <p class="process-card_text">Standards in leadership skills synergize optimal expertise rather than innovative leadership skills and better learning.</p>
-                </div>
-                <div class="process-arrow"><img src="assets/img/icon/process-arrow.svg" alt="line" /></div>
-            </div>
-            <div class="col-md-6 col-lg-4 process-card-wrap">
-                <div class="process-card">
-                    <div class="process-card_img"><img src="assets/img/process/process-1-2.png" alt="img" /></div>
-                    <div class="process-card_icon"><img src="assets/img/icon/process-icon-1-2.svg" alt="icon" /></div>
-                    <h2 class="box-title">Purchase Your Course</h2>
-                    <p class="process-card_text">We provide online learning program that enable learners to access high-quality education remotely.</p>
-                </div>
-                <div class="process-arrow"><img src="assets/img/icon/process-arrow.svg" alt="line" /></div>
-            </div>
-            <div class="col-md-6 col-lg-4 process-card-wrap">
-                <div class="process-card">
-                    <div class="process-card_img"><img src="assets/img/process/process-1-3.png" alt="img" /></div>
-                    <div class="process-card_icon"><img src="assets/img/icon/process-icon-1-3.svg" alt="icon" /></div>
-                    <h2 class="box-title">Great! Start Learn</h2>
-                    <p class="process-card_text">These programs cover a wide range of subjects and can be customized for individual learners or delivered to schools.</p>
-                </div>
-                <div class="process-arrow"><img src="assets/img/icon/process-arrow.svg" alt="line" /></div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-<section class="testi-area-3 bg-smoke overflow-hidden space">
-    @if(null!== $testimonials = module(5))
-<div class="shape-mockup testi2-bg-shape2 spin d-xl-block d-none" data-right="0" data-bottom="5%"><img src="assets/img/testimonial/testi-bg-shape_1_2.png" alt="img" /></div>
-<div class="shape-mockup testi2-bg-shape2 spin d-xl-block d-none" data-left="0" data-top="30%"><img src="assets/img/testimonial/testi-bg-shape_1_2.png" alt="img" /></div>
-<div class="shape-mockup testi2-bg-shape3 jump d-lg-block d-none" data-left="5%" data-top="45%"><img src="assets/img/testimonial/testi-bg-shape_2_1.png" alt="img" /></div>
 
-<div class="container">
-    <div class="title-area text-lg-start text-center">
-        <span class="sub-title"><i class="fal fa-book me-2"></i> Our Students Testimonials</span>
-        <h2 class="sec-title">Students Say’s About Us!</h2>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row slider-shadow th-carousel testi-slider-3" data-slide-show="3" data-ml-slide-show="2" data-lg-slide-show="2" data-md-slide-show="1" data-arrows="true" data-xl-arrows="true" data-ml-arrows="true">
-        @foreach($testimonials as $testimonial)
-        <div class="col-lg-6">
-            <div class="testi-box style2">
-                <div class="testi-box_review">
-                    <i class="fa-solid fa-star-sharp"></i> <i class="fa-solid fa-star-sharp"></i> <i class="fa-solid fa-star-sharp"></i> <i class="fa-solid fa-star-sharp"></i> <i class="fa-solid fa-star-sharp"></i> (4.7)
-                </div>
-                <div class="testi-box-bg-shape">
-                    <svg width="78" height="111" viewBox="0 0 78 111" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L78 30V71C78 93.0914 60.0914 111 38 111H10C4.47715 111 0 106.523 0 101V0Z" fill="#0D5EF4" /></svg>
-                </div>
-                <div class="testi-box_content">
-                    <p class="testi-box_text">
-                        {!!$testimonial->description!!}
-                    </p>
-                </div>
-                <div class="testi-box_bottom">
-                    <div class="testi-box_img"><img src="{{asset('images/'.$testimonial->image)}}" alt="Avater" /></div>
-                    <div class="testi-box-author-details">
-                        <h3 class="testi-box_name">{!!$testimonial->title!!}</h3>
-                        <span class="testi-box_desig">{{$testimonial->extra_field_1}}</span>
-                    </div>
-                    <div class="testi-box_quote"><img src="assets/img/icon/testi-quote2.svg" alt="quote" /></div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
-@endif
-</section>
-<section class="space">
-<div class="container">
-    <div class="title-area text-center">
-        <span class="sub-title"><i class="fal fa-book me-1"></i> Pricing Table</span>
-        <h2 class="sec-title">Our Membership Price Plan</h2>
-    </div>
-    <div class="row gy-4 justify-content-center">
-        <div class="col-xl-4 col-md-6">
-            <div class="price-card">
-                <div class="price-card_top">
-                    <h3 class="price-card_title">Basic Plan</h3>
-                    <h4 class="price-card_price">$156.00 <span class="duration">/PER MONTHLY</span></h4>
-                </div>
-                <div class="price-card_content">
-                    <div class="checklist">
-                        <ul>
-                            <li><i class="far fa-check-circle"></i> Access to all courses</li>
-                            <li><i class="far fa-check-circle"></i> Example code available</li>
-                            <li><i class="far fa-check-circle"></i> High resolution videos</li>
-                            <li class="unavailable"><i class="fa-regular fa-circle-xmark"></i> Certificate after completion</li>
-                            <li class="unavailable"><i class="fa-regular fa-circle-xmark"></i> Private sessions</li>
-                        </ul>
-                    </div>
-                    <a href="pricing.html" class="th-btn style10">CHOOSE THE PLAN<i class="fa-regular fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-md-6">
-            <div class="price-card active">
-                <div class="price-card_top">
-                    <h3 class="price-card_title">Standard Plan</h3>
-                    <h4 class="price-card_price">$176.00 <span class="duration">/PER MONTHLY</span></h4>
-                </div>
-                <div class="price-card_content">
-                    <div class="checklist">
-                        <ul>
-                            <li><i class="far fa-check-circle"></i> Access to all courses</li>
-                            <li><i class="far fa-check-circle"></i> Example code available</li>
-                            <li><i class="far fa-check-circle"></i> High resolution videos</li>
-                            <li><i class="fa-regular fa-circle-xmark"></i> Certificate after completion</li>
-                            <li class="unavailable"><i class="fa-regular fa-circle-xmark"></i> Private sessions</li>
-                        </ul>
-                    </div>
-                    <a href="pricing.html" class="th-btn style10">CHOOSE THE PLAN<i class="fa-regular fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-md-6">
-            <div class="price-card">
-                <div class="price-card_top">
-                    <h3 class="price-card_title">Premium Plan</h3>
-                    <h4 class="price-card_price">$196.00 <span class="duration">/PER MONTHLY</span></h4>
-                </div>
-                <div class="price-card_content">
-                    <div class="checklist">
-                        <ul>
-                            <li><i class="far fa-check-circle"></i> Access to all courses</li>
-                            <li><i class="far fa-check-circle"></i> Example code available</li>
-                            <li><i class="far fa-check-circle"></i> High resolution videos</li>
-                            <li><i class="fa-regular fa-circle-xmark"></i> Certificate after completion</li>
-                            <li><i class="fa-regular fa-circle-xmark"></i> Private sessions</li>
-                        </ul>
-                    </div>
-                    <a href="pricing.html" class="th-btn style10">CHOOSE THE PLAN<i class="fa-regular fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-<section class="blog-area-3 space-top" data-bg-src="assets/img/bg/blog-3-bg.png" id="blog-sec">
-@if(null!==($blogs = module(10)))
-<div class="shape-mockup blog-3-bg-shape1 jump" data-left="3%" data-bottom="10%"><img src="assets/img/normal/blog-3-bg-shape.png" alt="img" /></div>
-<div class="container">
-    <div class="mb-35 text-center text-md-start">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-md-8">
-                <div class="title-area mb-md-0">
-                    <span class="sub-title"><i class="fal fa-book me-2"></i> Our News & Blogs</span>
-                    <h2 class="sec-title">Latests News & Blogs</h2>
-                </div>
-            </div>
-            <div class="col-md-auto">
-                <a href="blog.html" class="th-btn">View All Posts<i class="fa-solid fa-arrow-right ms-2"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="row th-carousel" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="1" data-sm-slide-show="1" data-arrows="true">
-       @foreach($blogs as $blog)
-        <div class="col-md-6 col-xl-4">
-            <div class="th-blog blog-single style4">
-                <div class="blog-img">
-                    <a href="blog-details.html"><img src="assets/img/blog/blog-3-1.jpg" alt="Blog Image" /></a>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <a class="author" href="blog.html"><i class="fa-light fa-user"></i>by {{$blog->extra_field_1}}</a> <a href="blog.html"><i class="fa-light fa-clock"></i>{{$blog->extra_field_2}} {{$blog->extra_field_4}}, {{$blog->extra_field_3}}</a>
-                    </div>
-                    <h4 class="box-title"><a href="blog-details.html">{{$blog->title}}</a></h4>
-                    <a href="blog-details.html" class="link-btn">Read More Details<i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
-@endif
-</section>
-<div class="container">
-<div class="newsletter-area-1" data-bg-src="assets/img/bg/newsletter-1-bg.png">
-    <div class="newsletter-thumb shape-mockup d-lg-block d-none" data-top="0" data-left="0"><img src="assets/img/normal/newsletter-thumb1.png" alt="img" /></div>
-    <div class="row justify-content-end align-items-center">
-        <div class="col-xl-4 col-lg-8 col-md-12">
-            <div class="title-area mb-0 me-xxl-5 text-md-start text-center"><h2 class="sec-title h4 text-white">Subscribe Our Newsletter For Latest Updates</h2></div>
-        </div>
-        <div class="col-xl-5 col-lg-8 col-md-12 mt-40 mt-xl-0 text-end">
-            <div class="widget newsletter-widget footer-widget mb-0">
-                <form class="newsletter-form">
-                    <div class="form-group"><input class="form-control" type="email" placeholder="Email Address" required="" /> <i class="far fa-envelope"></i></div>
-                    <button type="submit" class="th-btn style9">Subscribe Now<i class="far fa-arrow-right ms-2"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+@push('js')
+
+@endpush
 </x-app-layout>
